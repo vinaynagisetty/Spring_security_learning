@@ -1,6 +1,6 @@
 package com.vinay.nagisetty.spring.security.learning.controller;
 
-import jakarta.servlet.http.HttpServlet;
+import com.vinay.nagisetty.spring.security.learning.model.Student;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.bind.annotation.GetMapping;

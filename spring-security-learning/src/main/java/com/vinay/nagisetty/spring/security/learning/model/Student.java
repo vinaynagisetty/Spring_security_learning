@@ -1,4 +1,4 @@
-package com.vinay.nagisetty.spring.security.learning.controller;
+package com.vinay.nagisetty.spring.security.learning.model;
 
 public class Student {
     private int id;
