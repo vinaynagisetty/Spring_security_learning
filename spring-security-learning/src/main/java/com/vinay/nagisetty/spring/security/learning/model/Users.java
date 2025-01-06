@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 public class Users {
 
     @Id
-    private int Id;
+    private int id;
     private String username;
     private String password;
 
@@ -17,17 +17,17 @@ public class Users {
     }
 
     public Users(int id, String username, String password) {
-        Id = id;
+        this.id = id;
         this.username = username;
         this.password = password;
     }
 
     public int getId() {
-        return Id;
+        return id;
     }
 
     public void setId(int id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getUsername() {
@@ -44,14 +44,5 @@ public class Users {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    @Override
-    public String toString() {
-        return "Users{" +
-                "Id=" + Id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                '}';
     }
 }

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProductController {
     @GetMapping("/")
     public String greet(HttpServletRequest request) {
-        System.out.println("inside the controller");
+//        System.out.println("inside the controller");
         return "Hello from vinay nagisetty" + " "+request.getSession().getId();
     }
 }
