@@ -1,5 +1,7 @@
 package com.vinay.nagisetty.spring.security.learning.config;
 
+import com.vinay.nagisetty.spring.security.learning.filter.JwtFilter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,10 +17,14 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+     @Autowired
+    private JwtFilter jwtFilter;
+
     private  UserDetailsService userDetailsService;
 
     public SecurityConfig(UserDetailsService userDetailsService) {
@@ -27,16 +33,19 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain (HttpSecurity https) throws Exception {
-        https
+     return  https
                 .csrf(customizer -> customizer.disable())
                 .authorizeHttpRequests(requst -> requst
                         .requestMatchers("login","register").permitAll()
                         .anyRequest().authenticated())
 //                .formLogin(Customizer.withDefaults())
                 .httpBasic(Customizer.withDefaults())
-                .sessionManagement(session ->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+                .sessionManagement(session ->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+             .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+        .build();
 
-        return https.build();
+     //        addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+//        return https.build();
     }
     //    @Bean
 //    public UserDetailsService userDetailsService() {
